@@ -44,6 +44,18 @@ localStorage.setItem(savedTime, descriptionInput);
 // Gets current hour in 24 hour time using "hour" property of days.js, this can be used to help apply past/present/future classes
 var presentTime =dayjs().hour();
 
+// variables for working hours
+let workHours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
+  
+//loop to reload event descriptions
+for (i = 0; i < workHours.length; i++) {
+  let storedTime = ('hour-' + dailyHours[i]);
+  let storedDescription = $('#hour-' + workHours[i] + ' .description');
+
+  $(storedDescription).val(localStorage.getItem(storedTime));
+};
+
+
 
 
 
