@@ -85,7 +85,7 @@ $(function () {
   var savedUserInput = localStorage.getItem(hour);
 
   //sets the value of the corresponding text area element
-  $(.textarea).val(savedUserInput)
+  $(textarea).val(savedUserInput)
     
 
 
