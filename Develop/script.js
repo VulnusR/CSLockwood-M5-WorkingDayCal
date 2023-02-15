@@ -11,6 +11,10 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
+
+
+
+//Applies function to all saveBtns so any of them can be clicked and have the same function.
 $('.saveBtn').click(function() {
 
 
@@ -18,7 +22,34 @@ $('.saveBtn').click(function() {
 //$(this) = JjQuery object that wraps around 'this', 'this' references the current object = (.saveBtn)
 //.closest('.time-block) = searchs for and runs the nearest ancestor '.time-block' element of clicked .saveBtn
 //.find('.description') = finds the descendant of the current element (.time-block in this case) that matches the .description element.
-  var textarea = $(this).closest('.time-block').find('.description');
+  var textArea = $(this).closest('.time-block').find('.description');
+
+
+// retrieves the value of the textArea
+ var descriptionInput = textArea.val();
+
+ //On button click finds the nearest time-block and saves the 'id' aka the time and stores it in the savedTime variable
+ var savedTime = $(this).closest('.time-block').attr('id');
+
+
+ // stores the time & associated text in local storage
+localStorage.setItem(savedTime, descriptionInput);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 
