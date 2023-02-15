@@ -76,16 +76,28 @@ $(function () {
       }
 
     }
+
+
+    // TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements.
+    // HINT: How can the id attribute of each time-block be used to do this?
+
+    //Gets saved user data from local storage
+    var savedUserInput = localStorage.getItem(savedTime);
+
+    //sets the value of the corresponding text area element
+    $(this).find('textarea').val(savedUserInput);
+
+
+
+
+
+
+
+
+    
   });
   
-  // TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements.
-  // HINT: How can the id attribute of each time-block be used to do this?
-
-  //Gets saved user data from local storage
-  var savedUserInput = localStorage.getItem(hour);
-
-  //sets the value of the corresponding text area element
-  $(textarea).val(savedUserInput)
+  
     
 
 
