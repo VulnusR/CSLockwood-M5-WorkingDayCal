@@ -2,6 +2,9 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+
+  var savedTime;
+  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage.
@@ -86,25 +89,16 @@ $(function () {
 
     //sets the value of the corresponding text area element
     $(this).find('textarea').val(savedUserInput);
-
-
-
-
-
-
-
-
-    
   });
   
-  
-    
+ // TODO: Add code to display the current date in the header of the page.
+
+  // Get the current date and format it
+  var currentDate = dayjs().format("MMMM D, YYYY");
+
+  // Set the content of the header element to the formatted date
+  $("#currentDay").html("<h1>Today's Date: " + currentDate + "</h1>");  
 
 
 
-
-
-
-
-    // TODO: Add code to display the current date in the header of the page.
 });
