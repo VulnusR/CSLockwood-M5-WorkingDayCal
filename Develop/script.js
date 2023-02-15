@@ -47,17 +47,20 @@ var presentTime =dayjs().hour();
 // variables for working hours
 let workHours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
   
-//loop to reload event descriptions
-for (i = 0; i < workHours.length; i++) {
-  let storedTime = ('hour-' + dailyHours[i]);
-  let storedDescription = $('#hour-' + workHours[i] + ' .description');
 
-  $(storedDescription).val(localStorage.getItem(storedTime));
+//Loops through each "time-block" element
+$('.time-block').each(function () {
+
+  // Get the id of the current time-block
+  // "this" in this case is the time-block
+  //.split('-') seperates the "hour-XX" into an array [hour, 12] for example, [1] retrieves the second element in the array (XX or the hour)
+  var hour = $(this).attr('id').split('-')[1];
+
+//this function executes only IF the current var hour is included in the workHours array.
+//parseInt(hour)) converts the string representation of the interger obtained by the var hour into an actual integer, so it can be compared to workHours which is an integer
+if (workHours.includes(parseInt(hour))) {
+
 };
-
-
-
-
 
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
