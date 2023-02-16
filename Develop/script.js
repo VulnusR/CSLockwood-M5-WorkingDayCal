@@ -1,31 +1,22 @@
 
 $(function () {
 
-
-
-
-  var presentTime =dayjs().hour();
-  console.log(presentTime)
+  var presentTime = dayjs().hour();
   var workHours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
-  console.log(workHours)
   var currentDate = dayjs().format("MMMM D, YYYY");
 
   $("#currentDay").html("<h1>Today's Date: " + currentDate + "</h1>");  
   
   
 
- //json.stringify
 
- 
+
+  //Saves text data for corrosponding time section.
   $('.saveBtn').click(function() {
 
-
     var textArea = $(this).closest('.time-block').find('.description');
-    console.log (textArea)
     var clickEventTime = $(this).closest('.time-block').attr('id');
-    console.log(clickEventTime)
     var clickEventTxt = textArea.val();
-    console.log(clickEventTxt)
     
     localStorage.setItem(clickEventTime, clickEventTxt);
   });
@@ -33,29 +24,26 @@ $(function () {
 
 
 
-
+  //Applies various effects to 'time-block's
   $('.time-block').each(function() {
 
+    //displays data saved in local storage using a loop
     var hour = $(this).attr('id').split('-')[1];
-    console.log(hour)
-
     var storedKeyValue = localStorage.getItem("hour-" + hour);
 
     if (storedKeyValue) {
       $(this).find('.description').val(storedKeyValue);
-
- 
-
     }
 
 
-
+    //converts value to integer for later comparison 
     var hourInt = parseInt(hour)
+    
 
+    //Changes color values of 'time-block' depending on realitive time of day.
+    if (workHours.includes(hourInt)) {
 
-     if (workHours.includes(hourInt)) {
-
-  
+      
       if (hourInt < presentTime) {
       $(this).removeClass('present').removeClass('future').addClass('past');
       } 
