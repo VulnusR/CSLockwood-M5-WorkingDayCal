@@ -1,3 +1,8 @@
+
+
+
+
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -13,11 +18,13 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be useful when saving the description in local storage?
 
 
-
+ //json.stringify
 
   //Applies function to all saveBtns so any of them can be clicked and have the same function.
   $('.saveBtn').click(function() {
 
+
+    
 
     //Gets the text area.
     //$(this) = JjQuery object that wraps around 'this', 'this' references the current object = (.saveBtn)
@@ -29,7 +36,7 @@ $(function () {
     // retrieves the value of the textArea
     var descriptionInput = textArea.val();
 
-    //On button click finds the nearest time-block and saves the 'id' aka the time and stores it in the savedTime variable
+    //On button click finds the nearest time-block and saves the 'id' aka the 'hour' and stores it in the savedTime variable
     var savedTime = $(this).closest('.time-block').attr('id');
 
 
@@ -47,30 +54,44 @@ $(function () {
   // Gets current hour in 24 hour time using "hour" property of days.js, this can be used to help apply past/present/future classes
   var presentTime =dayjs().hour();
 
+  
+
   // variables for working hours
-  let workHours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
+  var workHours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
   
 
   //Loops through each "time-block" element
   $('.time-block').each(function () {
+
+   console.log('presentTime', presentTime) 
+
+   console.log(typeof presentTime)
 
     // Get the id of the current time-block
     // "this" in this case is the time-block
     //.split('-') seperates the "hour-XX" into an array [hour, 12] for example, [1] retrieves the second element in the array (XX or the hour)
     var hour = $(this).attr('id').split('-')[1];
 
+    
+
+    var hourInt = parseInt(hour)
+
+
+    console.log('hour', hour)
+    console.log(typeof hourInt)
+
     //this function executes only IF the current var hour is included in the workHours array.
     //parseInt(hour)) converts the string representation of the interger obtained by the var hour into an actual integer, so it can be compared to workHours which is an integer
-    if (workHours.includes(parseInt(hour))) {
+    if (workHours.includes(hourInt)) {
 
       //Compares the id from the hour variable to the current hour in the presentTime variable.
       //as apart of the $('.time-block').each(function () all 'this' are again referring to the time-block triggered by the function.
 
-      if (hour < presentTime) {
+      if (hourInt < presentTime) {
       $(this).removeClass('present').removeClass('future').addClass('past');
       } 
       
-      else if (hour === presentTime) {
+      else if (hourInt === presentTime) {
       $(this).removeClass('past').removeClass('future').addClass('present');  
       } 
       
@@ -86,6 +107,8 @@ $(function () {
 
     //Gets saved user data from local storage
     var savedUserInput = localStorage.getItem(savedTime);
+
+    console.log(savedUserInput)
 
     //sets the value of the corresponding text area element
     $(this).find('textarea').val(savedUserInput);
