@@ -8,7 +8,16 @@
 // in the html.
 $(function () {
 
-  var savedTime;
+
+
+
+  var presentTime =dayjs().hour();
+  var workHours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
+  // Get the current date and format it
+  var currentDate = dayjs().format("MMMM D, YYYY");
+
+  // Set the content of the header element to the formatted date
+  $("#currentDay").html("<h1>Today's Date: " + currentDate + "</h1>");  
   
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -23,25 +32,13 @@ $(function () {
   //Applies function to all saveBtns so any of them can be clicked and have the same function.
   $('.saveBtn').click(function() {
 
+   $(this).siblings('.description').val();
+   var clickEventTxt = $(this).siblings('.description').get(0).value;
+   var clickEventTime = $(this).parent().attr("id");
 
-    
-
-    //Gets the text area.
-    //$(this) = JjQuery object that wraps around 'this', 'this' references the current object = (.saveBtn)
-    //.closest('.time-block) = searchs for and runs the nearest ancestor '.time-block' element of clicked .saveBtn
-    //.find('.description') = finds the descendant of the current element (.time-block in this case) that matches the .description element.
-    var textArea = $(this).closest('.time-block').find('.description');
-
-
-    // retrieves the value of the textArea
-    var descriptionInput = textArea.val();
-
-    //On button click finds the nearest time-block and saves the 'id' aka the 'hour' and stores it in the savedTime variable
-    var savedTime = $(this).closest('.time-block').attr('id');
-
-
-    // stores the time & associated text in local storage
-    localStorage.setItem(savedTime, descriptionInput);
+   localStorage.setItem(clickEventTxt, clickEventTime);
+  
+  
   });
 
   // TODO: Add code to apply the past, present, or future class to each time
@@ -116,11 +113,7 @@ $(function () {
   
  // TODO: Add code to display the current date in the header of the page.
 
-  // Get the current date and format it
-  var currentDate = dayjs().format("MMMM D, YYYY");
-
-  // Set the content of the header element to the formatted date
-  $("#currentDay").html("<h1>Today's Date: " + currentDate + "</h1>");  
+  
 
 
 
