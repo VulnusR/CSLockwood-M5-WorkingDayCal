@@ -1,4 +1,3 @@
-
 $(function () {
 
   var presentTime = dayjs().hour();
@@ -58,11 +57,4 @@ $(function () {
 
     }
   });
-  
- 
-
-  
-
-
-
 });
